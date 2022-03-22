@@ -1,5 +1,3 @@
-from sklearn.datasets import load_breast_cancer
-
 import pandas as pd
 from pandas.io.json import json_normalize
 
