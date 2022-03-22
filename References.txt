@@ -1,0 +1,8 @@
+
+References:
+
+Drawing pair wise correlations
+https://towardsdatascience.com/how-to-use-pairwise-correlation-for-robust-feature-selection-20a60ef7d10
+
+JS visualizations
+https://bl.ocks.org/micahstubbs/703b1c69a28f5a9d17b645d1253c1233
