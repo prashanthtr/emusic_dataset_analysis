@@ -1,13 +1,80 @@
 import pandas as pd
 from pandas.io.json import json_normalize
-
 import seaborn as sns
-
 import matplotlib.pyplot as plt
-
 import json
+import sys
 
-#df = pd.read_json('data/20210402_NewHaven01-02.json')
+# all features 
+all_features = ["flow",
+        "mic", 
+        "delta", "backing_track_position", "chorus_id", 
+        "bitalino", 
+        "eegT3", "eegT4", "eeg01", "eeg02", 
+        "r_shoudlerx", "r_shoudlery", "r_shoudlerconf", 
+        "r_elbowx", "r_elbowy", "r_elbowconf", 
+        "r_wristx", "r_wristy", "r_wristconf", 
+        "r_eyex", "r_eyey", "r_eyeconf",
+        "r_earx", "r_eary", "r_earconf",
+        "l_shoudlerx", "l_shoudlery", "l_shoudlerconf",
+        "l_elbowx", "l_elbowy", "l_elbowconf",
+        "l_wristx", "l_wristy", "l_wristconf",
+        "l_eyex", "l_eyey", "l_eyeconf",
+        "l_earx", "l_eary", "l_earconf"]
+
+print(sys.argv)
+
+# custom inputs
+if len(sys.argv) == 1:
+    fields = all_features
+else:
+    fields = []
+    for features in sys.argv[1:len(sys.argv)]:
+        if features == "rightshoulder":
+            fields.append("r_shoudlerx")      
+            fields.append("r_shoudlery")
+        elif features == "rightelbow":
+            fields.append("r_elbowx")      
+            fields.append("r_elbowy")
+        elif features == "rightwrist":
+            fields.append("r_wristx")      
+            fields.append("r_wristy")
+        elif features == "rightear":
+            fields.append("r_earx")      
+            fields.append("r_eary")
+        elif features == "righteye":
+            fields.append("r_eyex")      
+            fields.append("r_eyey")
+        elif features == "leftshoulder":
+            fields.append("l_shoudlerx")      
+            fields.append("l_shoudlery")
+        elif features == "leftelbow":
+            fields.append("l_elbowx")      
+            fields.append("l_elbowy")
+        elif features == "leftwrist":
+            fields.append("l_wristx")      
+            fields.append("l_wristy")
+        elif features == "leftear":
+            fields.append("l_earx")      
+            fields.append("l_eary")
+        elif features == "lefteye":
+            fields.append("l_eyex")      
+            fields.append("l_eyey")
+        elif features == "flow" or features == "Flow":
+            fields.append("flow") 
+        elif features == "eeg":
+            fields.append("eeg01")
+            fields.append("eeg02")
+            fields.append("eegT3")
+            fields.append("eegT4")
+        elif features == "track":
+            fields.append("mic")
+            fields.append("backing_track_position")
+            fields.append("chorus_id")
+        else:
+            print("features not present")
+
+print(fields)
 
 with open('data/20210402_NewHaven01-02.json') as jsonfile:
     data = json.load(jsonfile)    
@@ -98,25 +165,8 @@ for d in data:
         l_earx, l_eary, l_earconf])
 
 
-all_features = ["flow",
-        "mic", 
-        "delta", "backing_track_position", "chorus_id", 
-        "bitalino", 
-        "eegT3", "eegT4", "eeg01", "eeg02", 
-        "r_shoudlerx", "r_shoudlery", "r_shoudlerconf", 
-        "r_elbowx", "r_elbowy", "r_elbowconf", 
-        "r_wristx", "r_wristy", "r_wristconf", 
-        "r_eyex", "r_eyey", "r_eyeconf",
-        "r_earx", "r_eary", "r_earconf",
-        "l_shoudlerx", "l_shoudlery", "l_shoudlerconf",
-        "l_elbowx", "l_elbowy", "l_elbowconf",
-        "l_wristx", "l_wristy", "l_wristconf",
-        "l_eyex", "l_eyey", "l_eyeconf",
-        "l_earx", "l_eary", "l_earconf"]
 
 df = pd.DataFrame(flat_data, columns = all_features)
-
-fields = ["flow", "eegT3", "eegT4", "eeg01", "eeg02"]
 
 feature_yes = []
 
