@@ -4,7 +4,7 @@
 Here's a snippet to produce correation values between features in the Emboided musicking dataset 
 https://github.com/Creative-AI-Research-Group/embodiedMusickingDataset
 
-# All Features 
+# All Features
 
 The main features included in this analysis are: flow, backing track data, and hardware information. The features are run through a correaltion function to derive insights about feature relations.
 
@@ -39,6 +39,12 @@ The main features included in this analysis are: flow, backing track data, and h
 
 ## Visualization
 
-Customize the "fields" variable in Line 119 to produce different visualizations of features in the dataset.
+Customize the "fields" with high level command line arguments produce different visualizations of features in the dataset.
 
-	fields = ["flow", "eegT3", "eegT4", "eeg01", "eeg02"]
+### Command
+	>> python correlate.py rightshoulder leftshoulder eeg lefteye righteye
+
+### User level parameter names
+	
+	flow, leftshoulder, rightshoulder, rightelbow, leftelbow, rightwrist, leftwrist, righteye,lefteye, rightear, leftear, eeg, track
+	
